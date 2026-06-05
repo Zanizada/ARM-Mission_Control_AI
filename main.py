@@ -108,3 +108,54 @@ def calcular_medias(dados_missao):
     media_oxigenio = soma_oxigenio / quantidade_ciclos
     media_estabilidade = soma_estabilidade / quantidade_ciclos
     return (media_temperatura, media_comunicacao, media_bateria, media_oxigenio, media_estabilidade)
+
+# Função para analisar os ciclos:
+def analisar_ciclos():
+    riscos_ciclos = []
+    riscos_por_area = [0, 0, 0, 0, 0]
+    print("=" * 60)
+    print("MISSION CONTROL AI")
+    print("=" * 60)
+    print(f"Missão: {nome_missao}")
+    print(f"Equipe: {nome_equipe}")
+    print(f"Quantidade de ciclos analisados: {len(dados_missao)}")
+    print("=" * 60)
+    for indice, ciclo in enumerate(dados_missao):
+        temperatura = ciclo[0]
+        comunicacao = ciclo[1]
+        bateria = ciclo[2]
+        oxigenio = ciclo[3]
+        estabilidade = ciclo[4]
+        status_temperatura, risco_temperatura, msg_temperatura = analisar_temperatura(temperatura)
+        status_comunicacao, risco_comunicacao, msg_comunicacao = analisar_comunicacao(comunicacao)
+        status_bateria, risco_bateria, msg_bateria = analisar_bateria(bateria)
+        status_oxigenio, risco_oxigenio, msg_oxigenio = analisar_oxigenio(oxigenio)
+        status_estabilidade, risco_estabilidade, msg_estabilidade = analisar_estabilidade(estabilidade)
+        risco_total = (risco_temperatura + risco_comunicacao + risco_bateria + risco_oxigenio + risco_estabilidade)
+        riscos_ciclos.append(risco_total)
+        riscos_por_area[0] += risco_temperatura
+        riscos_por_area[1] += risco_comunicacao
+        riscos_por_area[2] += risco_bateria
+        riscos_por_area[3] += risco_oxigenio
+        riscos_por_area[4] += risco_estabilidade
+        classificacao = classificar_ciclo(risco_total)
+        recomendacao = gerar_recomendacao(risco_total)
+        print()
+        print(f"CICLO {indice + 1}")
+        print("-" * 60)
+        print(f"Temperatura: {temperatura} °C | {status_temperatura} | {msg_temperatura}")
+        print(f"Comunicação: {comunicacao}% | {status_comunicacao} | {msg_comunicacao}")
+        print(f"Bateria: {bateria}% | {status_bateria} | {msg_bateria}")
+        print(f"Oxigênio: {oxigenio}% | {status_oxigenio} | {msg_oxigenio}")
+        print(f"Estabilidade: {estabilidade}% | {status_estabilidade} | {msg_estabilidade}")
+        print()
+        print(f"Pontuação de risco do ciclo: {risco_total}")
+        print(f"Classificação do ciclo: {classificacao}")
+        print(f"Recomendação: {recomendacao}")
+    return riscos_ciclos, riscos_por_area
+
+# Dados principais do projeto:
+nome_missao = "Orion Test Alpha"
+nome_equipe = "Equipe Apollo"
+dados_missao = gerar_dados_missao(6)
+areas_monitoradas = ["Temperatura interna", "Comunicação com a base", "Sistema de energia", "Suporte de oxigênio", "Estabilidade operacional"]
