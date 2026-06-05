@@ -56,3 +56,55 @@ def analisar_estabilidade(estabilidade):
         return "ATENÇÃO", 1, "Estabilidade operacional reduzida"
     else:
         return "NORMAL", 0, "Estabilidade operacional adequada"
+
+# Funções de classificação geral:
+def classificar_ciclo(risco_total):
+    if risco_total <= 2:
+        return "MISSÃO ESTÁVEL"
+    elif risco_total <= 5:
+        return "MISSÃO EM ATENÇÃO"
+    else:
+        return "MISSÃO CRÍTICA"
+
+def gerar_recomendacao(risco_total):
+    if risco_total <= 2:
+        return "Manter operação normal e continuar monitoramento."
+    elif risco_total <= 5:
+        return "Monitorar sistemas em atenção e preparar plano de contingência."
+    else:
+        return "Ativar modo de segurança e priorizar sistemas críticos."
+
+def analisar_tendencia(riscos_ciclos):
+    primeiro_risco = riscos_ciclos[0]
+    ultimo_risco = riscos_ciclos[-1]
+    if ultimo_risco > primeiro_risco:
+        return "A missão apresentou tendência de piora."
+    elif ultimo_risco < primeiro_risco:
+        return "A missão apresentou tendência de melhora."
+    else:
+        return "A missão permaneceu estável em relação ao início."
+
+def identificar_area_mais_afetada(riscos_por_area, areas_monitoradas):
+    maior_risco = max(riscos_por_area)
+    indice_maior_risco = riscos_por_area.index(maior_risco)
+    return areas_monitoradas[indice_maior_risco]
+
+def calcular_medias(dados_missao):
+    quantidade_ciclos = len(dados_missao)
+    soma_temperatura = 0
+    soma_comunicacao = 0
+    soma_bateria = 0
+    soma_oxigenio = 0
+    soma_estabilidade = 0
+    for ciclo in dados_missao:
+        soma_temperatura += ciclo[0]
+        soma_comunicacao += ciclo[1]
+        soma_bateria += ciclo[2]
+        soma_oxigenio += ciclo[3]
+        soma_estabilidade += ciclo[4]
+    media_temperatura = soma_temperatura / quantidade_ciclos
+    media_comunicacao = soma_comunicacao / quantidade_ciclos
+    media_bateria = soma_bateria / quantidade_ciclos
+    media_oxigenio = soma_oxigenio / quantidade_ciclos
+    media_estabilidade = soma_estabilidade / quantidade_ciclos
+    return (media_temperatura, media_comunicacao, media_bateria, media_oxigenio, media_estabilidade)
