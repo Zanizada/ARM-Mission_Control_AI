@@ -13,3 +13,14 @@ def gerar_dados_missao(quantidade_ciclos):
         dados.append(ciclo)
         # [temperatura, comunicacao, bateria, oxigenio, estabilidade]
     return dados
+
+# Funções de análise individual:
+def analisar_temperatura(temperatura):
+    if temperatura < 18:
+        return "ATENÇÃO", 1, "Temperatura muito baixa"
+    elif temperatura <= 30:
+        return "NORMAL", 0, "Temperatura estável"
+    elif temperatura <= 35:
+        return "ATENÇÃO", 1, "Temperatura elevada"
+    else:
+        return "CRÍTICO", 2, "Risco de superaquecimento"
