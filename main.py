@@ -154,8 +154,68 @@ def analisar_ciclos():
         print(f"Recomendação: {recomendacao}")
     return riscos_ciclos, riscos_por_area
 
+# Função do relatório final:
+def gerar_relatorio_final(riscos_ciclos, riscos_por_area):
+    quantidade_ciclos = len(dados_missao)
+    (media_temperatura, media_comunicacao, media_bateria, media_oxigenio, media_estabilidade) = calcular_medias(dados_missao)
+    maior_risco = max(riscos_ciclos)
+    ciclo_mais_critico = riscos_ciclos.index(maior_risco) + 1
+    risco_medio = sum(riscos_ciclos) / quantidade_ciclos
+    quantidade_ciclos_criticos = 0
+    for risco in riscos_ciclos:
+        if risco >= 6:
+            quantidade_ciclos_criticos += 1
+    tendencia = analisar_tendencia(riscos_ciclos)
+    area_mais_afetada = identificar_area_mais_afetada(riscos_por_area, areas_monitoradas)
+    classificacao_final = classificar_ciclo(risco_medio)
+    # Gerando o relatório:
+    print()
+    print("=" * 60)
+    print("RELATÓRIO FINAL DA MISSÃO")
+    print("=" * 60)
+    print(f"Missão: {nome_missao}")
+    print(f"Equipe: {nome_equipe}")
+    print()
+    print(f"Quantidade de ciclos analisados: {quantidade_ciclos}")
+    print()
+    print(f"Média de temperatura: {media_temperatura:.2f} °C")
+    print(f"Média de comunicação: {media_comunicacao:.2f}%")
+    print(f"Média de bateria: {media_bateria:.2f}%")
+    print(f"Média de oxigênio: {media_oxigenio:.2f}%")
+    print(f"Média de estabilidade: {media_estabilidade:.2f}%")
+    print()
+    print(f"Ciclo mais crítico: Ciclo {ciclo_mais_critico}")
+    print(f"Maior pontuação de risco: {maior_risco}")
+    print(f"Risco médio da missão: {risco_medio:.2f}")
+    print(f"Quantidade de ciclos críticos: {quantidade_ciclos_criticos}")
+    print()
+    print("Tendência da missão:")
+    print(tendencia)
+    print()
+    print("Pontuação acumulada por área:")
+    for i in range(len(areas_monitoradas)):
+        print(f"{areas_monitoradas[i]}: {riscos_por_area[i]} pontos")
+    print()
+    print("Área mais afetada:")
+    print(area_mais_afetada)
+    print()
+    print("Classificação final da missão:")
+    print(classificacao_final)
+    print()
+    print("Conclusão:")
+    if classificacao_final == "MISSÃO ESTÁVEL":
+        print("A missão manteve bons indicadores operacionais e pode seguir em monitoramento padrão.")
+    elif classificacao_final == "MISSÃO EM ATENÇÃO":
+        print("A missão apresentou sinais de instabilidade e a equipe deve manter o plano de contingência ativo.")
+    else:
+        print("A missão apresentou alto risco operacional e exige intervenção imediata da equipe de controle.")
+
 # Dados principais do projeto:
 nome_missao = "Orion Test Alpha"
 nome_equipe = "Equipe Apollo"
 dados_missao = gerar_dados_missao(6)
 areas_monitoradas = ["Temperatura interna", "Comunicação com a base", "Sistema de energia", "Suporte de oxigênio", "Estabilidade operacional"]
+
+# Execução do código:
+riscos_ciclos, riscos_por_area = analisar_ciclos()
+gerar_relatorio_final(riscos_ciclos, riscos_por_area)
