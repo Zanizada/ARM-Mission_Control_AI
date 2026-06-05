@@ -32,3 +32,27 @@ def analisar_comunicacao(comunicacao):
         return "ATENÇÃO", 1, "Comunicação instável"
     else:
         return "NORMAL", 0, "Comunicação estável"
+
+def analisar_bateria(bateria):
+    if bateria < 20:
+        return "CRÍTICO", 2, "Bateria em nível crítico"
+    elif bateria < 50:
+        return "ATENÇÃO", 1, "Bateria abaixo do recomendado"
+    else:
+        return "NORMAL", 0, "Energia estável"
+
+def analisar_oxigenio(oxigenio):
+    if oxigenio < 80:
+        return "CRÍTICO", 2, "Oxigênio em nível crítico"
+    elif oxigenio < 90:
+        return "ATENÇÃO", 1, "Oxigênio abaixo do ideal"
+    else:
+        return "NORMAL", 0, "Oxigênio adequado"
+
+def analisar_estabilidade(estabilidade):
+    if estabilidade < 40:
+        return "CRÍTICO", 2, "Estabilidade operacional crítica"
+    elif estabilidade < 70:
+        return "ATENÇÃO", 1, "Estabilidade operacional reduzida"
+    else:
+        return "NORMAL", 0, "Estabilidade operacional adequada"
