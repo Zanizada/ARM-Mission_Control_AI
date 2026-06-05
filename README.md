@@ -447,8 +447,8 @@ Exemplo:
 ============================================================
 MISSION CONTROL AI
 ============================================================
-Missão: Orion Test Alpha
-Equipe: Equipe Apollo
+Missão: Artemis III Test Alpha
+Equipe: Equipe ARM
 Quantidade de ciclos analisados: 6
 ============================================================
 

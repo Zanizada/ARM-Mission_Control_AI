@@ -211,8 +211,8 @@ def gerar_relatorio_final(riscos_ciclos, riscos_por_area):
         print("A missão apresentou alto risco operacional e exige intervenção imediata da equipe de controle.")
 
 # Dados principais do projeto:
-nome_missao = "Orion Test Alpha"
-nome_equipe = "Equipe Apollo"
+nome_missao = "Artemis III Test Alpha"
+nome_equipe = "Equipe ARM"
 dados_missao = gerar_dados_missao(6)
 areas_monitoradas = ["Temperatura interna", "Comunicação com a base", "Sistema de energia", "Suporte de oxigênio", "Estabilidade operacional"]
 
