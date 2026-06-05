@@ -24,3 +24,11 @@ def analisar_temperatura(temperatura):
         return "ATENÇÃO", 1, "Temperatura elevada"
     else:
         return "CRÍTICO", 2, "Risco de superaquecimento"
+
+def analisar_comunicacao(comunicacao):
+    if comunicacao < 30:
+        return "CRÍTICO", 2, "Comunicação com a base em nível crítico"
+    elif comunicacao < 60:
+        return "ATENÇÃO", 1, "Comunicação instável"
+    else:
+        return "NORMAL", 0, "Comunicação estável"
