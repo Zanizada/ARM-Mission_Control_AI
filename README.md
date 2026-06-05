@@ -512,8 +512,8 @@ Isso faz com que o relatório final também possa mudar a cada execução. Essa 
 
 ## Integrantes
 
-* Arthur de Oliveira — RM: 
-* Miguel Piedade — RM: 
+* Arthur de Oliveira — RM: 568986
+* Miguel Piedade — RM: 572445
 * Rafael Zani — RM: 569033
 
 ---
